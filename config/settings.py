@@ -1,8 +1,9 @@
 from pathlib import Path
 from datetime import timedelta
-from decouple import config
+from decouple import Config, RepositoryEnv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+config = Config(RepositoryEnv(BASE_DIR / ".env"))
 
 SECRET_KEY = config("SECRET_KEY", default="dev-secret-key-change-me")
 DEBUG = config("DEBUG", default=True, cast=bool)
